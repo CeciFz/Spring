@@ -43,3 +43,35 @@ Los valores del atributo value se pueden inyectar también desde un archivo exte
 donde escribo nombreVariable=dato a mostrar
 y luego con la etiqueta <context:property-placeholder> indico a dónde debe leerlo.
 Finalmente, en la etiqueta property, luego de value escribo value="${nombreVariable}".
+
+
+
+*************************************************
+
+
+Patrones de diseño:
+- Por default (Spring): singleton
+- Si quiero cambiarlo a Prototype, desde la etiqueta bean de apertura agrego el atributo "scope" y le paso
+"prototype"
+
+
+
+*************************************************
+CICLO DE VIDA DE UN BEAN:
+-------------------------
+- Iniciación de contenedor de Spring
+- Instanciación de un bean
+- Inyección de dependencias
+- Procesado del bean
+- *(1)
+- Bean listo para su uso
+- Apagado del contenedor de Spring
+- *(2)
+
+* OPCIONALES:
+Para agregar la ejecución de tareas antes de que se inicie el bean uso la etiqueta: Método init (1)
+Para agregar la ejecución de tareas luego de que se usó el bean y se apagó el contenedor: Método destroy (2)
+
+Luego de crear los métodos dentro del bean (clase) donde quiero que se ejecuten, dentro de la etiqueta bean
+de apertura agrego los atributos init-method y/o destroy-method con el nombre que le di a los métodos (solo puede
+usarse con scope singleton).

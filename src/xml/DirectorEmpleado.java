@@ -17,5 +17,4 @@ public class DirectorEmpleado implements Empleado {
         return "Informe del director: " + informeNuevo.getInforme();  //Usa la dependecia del constructor
     }
 
-
 }

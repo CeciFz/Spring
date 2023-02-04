@@ -10,7 +10,7 @@
 ">
 
     <!--Crea cnt de Spring que va a proporcionar beans de tipo DirectorEmpleado -->
-<bean id="miEmpleado" class="xml.DirectorEmpleado">
+<bean id="miEmpleado" class="xml.DirectorEmpleado" scope="prototype" >
 
     <constructor-arg ref="miInforme"/>   <!--P/ usar el bean miInforme que creé más abajo  -->
 
@@ -26,7 +26,8 @@
     <bean id="miInformeSecretario" class="xml.Informe"/>
 
 
-    <bean id="miSecretario" class="xml.SecretarioEmpleado">
+    <bean id="miSecretario" class="xml.SecretarioEmpleado" init-method="metodoInicial"
+          destroy-method="metodoFinal">
 
         <property name="informeNuevo" ref="miInformeSecretario"> </property>
         <!--P/ usar el bean miInformeSecretario que creé más arriba  -->

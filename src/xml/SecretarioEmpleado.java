@@ -39,4 +39,18 @@ public class SecretarioEmpleado implements Empleado{
     public String getInforme() {
         return "Informe del secretario: " + informeNuevo.getInforme();
     }
+
+
+
+    /// Probando métodos init y destroy
+
+    public void metodoInicial(){
+        System.out.println("Se está ejecutando el método init en secretario.");
+    }
+
+    public void metodoFinal(){
+        System.out.println("Se está ejecutando el método destroy en secretario.");
+    }
+
+
 }
