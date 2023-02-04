@@ -1,5 +1,7 @@
 package annotations;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class EmpleadoEjemploBean implements Empleado {
     @Override
     public String getTareas() {
@@ -16,4 +18,12 @@ public class EmpleadoEjemploBean implements Empleado {
     public EmpleadoEjemploBean(CreacionInformeFinancieroBean nuevoInforme) {
         this.nuevoInforme = nuevoInforme;
     }
+
+    @Value("${nombre}")
+    private String nombreEmpresa;
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
 }

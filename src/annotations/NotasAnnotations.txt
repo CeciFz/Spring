@@ -46,3 +46,10 @@ Algunos artículos sobre la diferencia entre ambos:
 https://stackoverflow.com/questions/10604298/spring-component-versus-bean
 https://platzi.com/discusiones/2317-spring-boot/180818-cual-seria-la-diferencia-entre-un-component-a-un-bean-los-vi-muy-parecidos/
 
+@PropertySource: la agrego debajo de Configuration y ComponentScan si deseo que se lean valores desde un archivo externo, y
+le paso entre () el nombre del archivo que debe leer.
+@Value: para poder usar esos datos de un archivo externo. Se agrega sobre el atributo que quiero que tenga ese valor por
+default y le paso entre () el nombre de la variable que le puse en ese archivo externo, con ${} al igual que como hice
+con la lectura pero con archivo xml.
+Recordar que para usarlo debo crear un get de ese atributo y, en el main, instanciar el bean desde la clase en vez de
+desde la interfaz.

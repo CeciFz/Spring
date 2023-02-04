@@ -3,9 +3,11 @@ package annotations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ComponentScan("annotations")
+@PropertySource("classpath:datosEmpresaAnnotations.propiedades")
 public class EmpleadosConfig {
 
     //Defino bean CreacionInformeFinancieroBean (que será inyectado)

@@ -18,6 +18,8 @@ public class Main {
 
         //Empleado con BEAN
         Empleado bean = contexto.getBean("ejemploEmpleadoBean", Empleado.class); //Pide nombre metodo del bean e interfaz
+        EmpleadoEjemploBean bean2 = contexto.getBean("ejemploEmpleadoBean", EmpleadoEjemploBean.class);  //Para poder pedir el value
+
 
 
         // 3) Usar el bean
@@ -32,6 +34,8 @@ public class Main {
         System.out.println(bean.getTareas());
         System.out.println(bean.getInforme());
         System.out.println(" ");
+
+        System.out.println(bean2.getNombreEmpresa());
 
         // 4) Cerrar el contexto
         contexto.close();
