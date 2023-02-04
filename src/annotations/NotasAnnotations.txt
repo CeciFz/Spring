@@ -1,0 +1,48 @@
+Esta segunda parte fue para ver cómo era la configuración y uso de Spring con annotations.
+Cuando Spring encuentra una annotation, registra el bean de forma automática.
+
+
+- Para usar annotations hay configurar en el archivo xml para que Spring pueda scannear el código (las clases).
+- Designo a una clase como bean con la annotation @Component
+- Luego, ya en el main puedo leer el xml, pedir el bean y usarlo.
+
+
+***************************************
+
+@Autowired: para inyectar dependencias. Tanto por constructor como por setters: tengo que agregarle el @Component a
+la clase que va a ser inyectada y luego el @Autowired sobre el constructor/setter que la está inyectando.
+También puedo agregarlo directamente sobre el atributo que está usando la clase a inyectar. Esto lo hace por REFLEXION.
+También se le puede agregar a cualquier método.
+
+@Qualifier: por si tengo varias clases que implementen la misma interfaz como inyección de dependencias. Se coloca
+debajo de Autowired y entre () va el nombre de la clase que quiero que utilice. (Si no lo agrego no me está dando
+error, sino que usa la primer clase a la que le coloqué @Component que implementa esa interfaz).
+
+@Scope: para cambiar el patrón de diseño a protoype. Se coloca debajo de @Component en la clase que quiero que cambie
+de scope. @Scope("prototype")
+
+@PostConstruct y @PreDestroy: para agregar la ejecución de tareas antes de que se inicie el bean o
+después de que se apague. Se le agregan sobre los métodos con lo que quiero que se ejecute.
+--- Esto ya no funciona desde JAVA 9: allí se hace implementando innterfaces InitializingBean y DisponsableBean para
+poder usar los métodos destroy() y afterPropertiesSet() --- No lo probé!
+
+
+***************************************
+
+@Configuration: para prescindir del archivo xml de configuración. Creo una clase (puede quedar vacía) para usar de
+configuración y le agrego esta annotation junto con @ComponentScan("dondeDebeLeer").
+Luego, para crear el contexto, en el main en vez de utilizar ClassPathXmlApplicationContext uso
+AnnotationConfigApplicationContext y entre () el nombreDeLaClaseDeConfig.class -sin comillas-.
+
+
+@Bean: es para indicarle a Spring los bean a utilizar (en vez de hacer que Spring los busque).
+Es similar a @Component, solo que no le agrego nada a la clase que quiero usar de Bean, sino que lo configuro
+dentro de la clase que contiene la annotation @Configuration. Lo mismo para la inyección de dependencias de esa clase.
+En el main, para usarlo, cuando pido el bean, como primer argumento le paso el nombre del método que agregué como
+bean dentro de la clase java de configuración. Ejemplo:
+Empleado bean = contexto.getBean("ejemploEmpleadoBean", Empleado.class);
+
+Algunos artículos sobre la diferencia entre ambos:
+https://stackoverflow.com/questions/10604298/spring-component-versus-bean
+https://platzi.com/discusiones/2317-spring-boot/180818-cual-seria-la-diferencia-entre-un-component-a-un-bean-los-vi-muy-parecidos/
+
