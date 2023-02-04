@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd
+">
+
+    <!--Crea cnt de Spring que va a proporcionar beans de tipo DirectorEmpleado -->
+<bean id="miEmpleado" class="xml.DirectorEmpleado">
+
+    <constructor-arg ref="miInforme"> </constructor-arg>  <!--P/ usar el bean miInforme que creé más abajo  -->
+
+</bean>
+
+    <!--Creacion de la dependencia que se va a usar con constructor -->
+<bean id="miInforme" class="xml.Informe"></bean>
+
+
+    <!--   *****************************************************************  -->
+
+    <!--Creacion de la dependencia que se va a usar con setter  -->
+    <bean id="miInformeSecretario" class="xml.Informe"></bean>
+
+
+    <bean id="miSecretario" class="xml.SecretarioEmpleado">
+
+        <property name="informeNuevo" ref="miInformeSecretario"> </property>
+        <!--P/ usar el bean miInformeSecretario que creé más arriba  -->
+        <!-- En name va el mismo nombre del setter sin la palabra set y con la primera letra en minúscula -->
+
+        <property name="email" value="ejemplo@inyeccionCampos.com.ar"></property>
+        <property name="nombreEmpresa" value="Empresa por inyección de campos"></property>
+        <!--P/ inyectar campos a Secretario  -->
+        <!-- En name va el mismo nombre del setter sin la palabra set y con la primera letra en minúscula -->
+
+    </bean>
+
+
+</beans>

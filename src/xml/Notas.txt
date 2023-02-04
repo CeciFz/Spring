@@ -1,0 +1,39 @@
+Esta primera parte fue para ver cómo era la configuración y uso de Spring con el archivo xml.
+
+1) Primero cree un proyecto normal, pelado.
+2) Me descargué de https://repo.spring.io/ui/native/release/org/springframework/spring/ la última versión de Spring.
+Descargué el ...dist-zip: https://repo.spring.io/ui/native/release/org/springframework/spring/5.3.9/
+3) Descomprimí el zip y su carpeta libs la incluí dentro del proyecto.
+4) Agregué esos jar al proyecto desde Intelllij desde File/Project Structure/Modules/Dependencies
+https://www.geeksforgeeks.org/how-to-add-external-jar-file-to-an-intellij-idea-project/
+5) Creé las clases para practicar (interface empleado y clases jefe, director, etc.).
+6) Creé el archivo applicationContext.xml y le agregué la primer línea y la etiqueta <Beans> con todos su atributos.
+7) Luego creé el primer <Bean> "miEmpleado".
+8) Luego en el main seguí los pasos que se detallan allí: creación de contexto, pedir el bean, usarlo y cerrar contexto.
+Funcionó ok!!
+
+
+*************************************************
+
+
+Inyección de dependencias con xml
+----------------------------------
+Por constructor o setter:
+1) Crear la clase e interfaz de la dependencia (CrearInforme/Informe -- Esto lo voy a usar por Composición).
+2) Creación de constructor o setter en la clase para la inyección de dependencia.
+3) Configurar la inyección de dependecia en archivo xml: Creo el bean de la dependencia (miInforme) y luego
+le agrego dentro del bean de Contexto (miEmpleado) la etiqueta <constructor-arg> (si realicé la inyección por
+constructor) o <property> (inyección por setters) para indicarle de donde tomar la dependencia.
+
+
+*************************************************
+
+
+Inyección de campos con xml
+----------------------------
+1) Creo los atributos en la clase con sus setters y getter.
+2) Luego en el xml uso <property> y coloco en name el nombre del setter sin el set y primera letra en minúscula.
+Y en value coloco el valor que quiero que tenga.
+<property> va dentro del bean (clase) al cual le estoy queriendo aplicar estos campos.
+3) Lo uso en el mail, aunque debo tener en cuenta que para acceder a ellos voy a tener que instanciar el bean
+desde la clase y no desde la Interfaz.
