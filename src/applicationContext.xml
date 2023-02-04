@@ -12,18 +12,18 @@
     <!--Crea cnt de Spring que va a proporcionar beans de tipo DirectorEmpleado -->
 <bean id="miEmpleado" class="xml.DirectorEmpleado">
 
-    <constructor-arg ref="miInforme"> </constructor-arg>  <!--P/ usar el bean miInforme que creé más abajo  -->
+    <constructor-arg ref="miInforme"/>   <!--P/ usar el bean miInforme que creé más abajo  -->
 
 </bean>
 
     <!--Creacion de la dependencia que se va a usar con constructor -->
-<bean id="miInforme" class="xml.Informe"></bean>
+<bean id="miInforme" class="xml.Informe"/>
 
 
     <!--   *****************************************************************  -->
 
     <!--Creacion de la dependencia que se va a usar con setter  -->
-    <bean id="miInformeSecretario" class="xml.Informe"></bean>
+    <bean id="miInformeSecretario" class="xml.Informe"/>
 
 
     <bean id="miSecretario" class="xml.SecretarioEmpleado">
@@ -32,12 +32,15 @@
         <!--P/ usar el bean miInformeSecretario que creé más arriba  -->
         <!-- En name va el mismo nombre del setter sin la palabra set y con la primera letra en minúscula -->
 
-        <property name="email" value="ejemplo@inyeccionCampos.com.ar"></property>
-        <property name="nombreEmpresa" value="Empresa por inyección de campos"></property>
+        <property name="email" value="ejemplo@inyeccionCampos.com.ar"/>
+        <property name="nombreEmpresa" value="${nombre}"/>
         <!--P/ inyectar campos a Secretario  -->
         <!-- En name va el mismo nombre del setter sin la palabra set y con la primera letra en minúscula -->
 
     </bean>
+
+    <!--Para indicar a dónde debe ir a leer el archivo de datos de la empresa para usar como value  -->
+    <context:property-placeholder location="classpath:datosEmpresa.propiedades"/>
 
 
 </beans>

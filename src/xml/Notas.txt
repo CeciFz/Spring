@@ -37,3 +37,9 @@ Y en value coloco el valor que quiero que tenga.
 <property> va dentro del bean (clase) al cual le estoy queriendo aplicar estos campos.
 3) Lo uso en el mail, aunque debo tener en cuenta que para acceder a ellos voy a tener que instanciar el bean
 desde la clase y no desde la Interfaz.
+
+
+Los valores del atributo value se pueden inyectar también desde un archivo externo (ej: datosEmpresa.propiedades)
+donde escribo nombreVariable=dato a mostrar
+y luego con la etiqueta <context:property-placeholder> indico a dónde debe leerlo.
+Finalmente, en la etiqueta property, luego de value escribo value="${nombreVariable}".
